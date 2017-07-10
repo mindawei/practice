@@ -31,26 +31,23 @@ public class Quicksort {
 		}
 		quickSort(arr,0,arr.length-1);
 	}
-	
-	private static void quickSort(int[] arr,int bg,int end) {
-		if(bg>=end){
-			return;
-		}
-		int pos = partion(arr,bg,end);
-		
-		quickSort(arr,bg,pos);
-		quickSort(arr,pos+1,end);
+
+	private static void quickSort(int[] arr, int bg, int end) {
+		if(bg<end){
+			int pos = partion(arr,bg,end);
+			quickSort(arr,bg,pos);
+			quickSort(arr,pos+1,end);
+		}	
 	}
 
-	private static int partion(int[] arr, int bg, int end) {
-		int val = arr[bg];
-		int i= bg;
-		int j = end;
+	private static int partion(int[] arr, int i, int j) {
+		int val = arr[i];
 		while(i<j){
 			while(i<j&&arr[j]>=val){
 				--j;
 			}
 			arr[i] = arr[j];
+			
 			while(i<j&&arr[i]<=val){
 				++i;
 			}
@@ -60,6 +57,44 @@ public class Quicksort {
 		return i;
 	}
 	
+	
+	
+
+//	private static void quickSort(int[] arr) {
+//		if(arr==null||arr.length<=1){
+//			return;
+//		}
+//		quickSort(arr,0,arr.length-1);
+//	}
+//	
+//	private static void quickSort(int[] arr,int bg,int end) {
+//		if(bg>=end){
+//			return;
+//		}
+//		int pos = partion(arr,bg,end);
+//		
+//		quickSort(arr,bg,pos);
+//		quickSort(arr,pos+1,end);
+//	}
+//
+//	private static int partion(int[] arr, int bg, int end) {
+//		int val = arr[bg];
+//		int i= bg;
+//		int j = end;
+//		while(i<j){
+//			while(i<j&&arr[j]>=val){
+//				--j;
+//			}
+//			arr[i] = arr[j];
+//			while(i<j&&arr[i]<=val){
+//				++i;
+//			}
+//			arr[j] = arr[i];
+//		}
+//		arr[i] = val;
+//		return i;
+//	}
+//	
 
 	
 //	private static void quickSort(int[] arr) {

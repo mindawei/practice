@@ -1,10 +1,10 @@
 package string;
 
 /**
- * KmpÁ·Ï°£¬Ö÷ÒªË¼Ïë£º×Ó´®ÄÚ²¿Ö®¼äµÄÐÅÏ¢¿ÉÒÔÀûÓÃ£¬±ÜÃâÖØ¸´±È½Ï
+ * Kmpï¿½ï¿½Ï°ï¿½ï¿½ï¿½ï¿½ÒªË¼ï¿½ë£ºï¿½Ó´ï¿½ï¿½Ú²ï¿½Ö®ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ø¸ï¿½ï¿½È½ï¿½
  *
  * @author mindw
- * @date 2017Äê7ÔÂ3ÈÕ
+ * @date 2017ï¿½ï¿½7ï¿½ï¿½3ï¿½ï¿½
  */
 public class Kmp {
 
@@ -22,6 +22,51 @@ public class Kmp {
 		
 		//search(original, find, getNext(find));
 		kmp(original, find);
+	}
+
+	private static void kmp(String original, String find) {
+		int findLen = find.length();
+		int[] next = new int[findLen+1];
+		next[0] = next[1] = 0;
+		int i,j=0;
+		
+		char ch;
+		for(i=1;i<findLen;++i){
+			ch = find.charAt(i);
+			while(j!=0&&ch!=find.charAt(j)){
+				j = next[j];
+			}
+			
+			if(ch==find.charAt(j)){
+				++j;
+			}
+			
+			next[i+1] = j;
+		}
+		
+		
+		int originalLen = original.length();
+		j = 0;
+		for(i=0;i<originalLen;++i){
+			ch = original.charAt(i);
+			while(j!=0&&ch!=find.charAt(j)){
+				j = next[j];
+			}
+			
+			if(ch == find.charAt(j)){
+				++j;
+			}
+			
+			if(j==findLen){
+				
+				System.out.println("find at "+(i-j+1)+" "+original.substring((i-j+1),i+1));
+				
+				j = next[j];
+			}
+			
+		}
+		
+		
 	}
 
 //	private static void kmp(String original, String find) {
@@ -73,65 +118,65 @@ public class Kmp {
 	
 	
 
-	/**
-	 * ²Î¿¼Á´½Ó£ºhttp://blog.csdn.net/yutianzuijin/article/details/11954939/
-	 * @param str
-	 * @param subStr
-	 */
-	private static void kmp(final String str,final String subStr) {
-		
-		if(str==null||subStr==null){
-			throw new IllegalArgumentException("²ÎÊý²»ÄÜÎªnull");
-		}
-		
-		int subStrLen = subStr.length();
-		int[] next = new int[subStrLen+1];
-		next[0] = next[1] = 0;
-		int i,j=0;
-		
-		for(i=1;i<subStrLen;++i){
-			
-			while(j!=0&&subStr.charAt(i)!=subStr.charAt(j)){
-				j = next[j];
-			}
-			
-			if(subStr.charAt(i)==subStr.charAt(j)){
-				j++;
-			}
-			
-			next[i+1] = j;
-		}
-		
-		int strlen=str.length();
-		j = 0;
-		for(i=0;i<strlen;++i){
-			
-			while(j!=0&&str.charAt(i)!=subStr.charAt(j)){
-				j = next[j];
-			}
-			
-			if(str.charAt(i)==subStr.charAt(j)){
-				++j;
-			}
-			
-			if(j==subStrLen){
-				System.out.println("find at "+(i-j+1)+" "+str.substring(i-j+1, i+1));
-				j = next[j];
-			}
-			
-		}
-	}
+//	/**
+//	 * http://blog.csdn.net/yutianzuijin/article/details/11954939/
+//	 * @param str
+//	 * @param subStr
+//	 */
+//	private static void kmp(final String str,final String subStr) {
+//		
+//		if(str==null||subStr==null){
+//			throw new IllegalArgumentException("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Îªnull");
+//		}
+//		
+//		int subStrLen = subStr.length();
+//		int[] next = new int[subStrLen+1];
+//		next[0] = next[1] = 0;
+//		int i,j=0;
+//		
+//		for(i=1;i<subStrLen;++i){
+//			
+//			while(j!=0&&subStr.charAt(i)!=subStr.charAt(j)){
+//				j = next[j];
+//			}
+//			
+//			if(subStr.charAt(i)==subStr.charAt(j)){
+//				j++;
+//			}
+//			
+//			next[i+1] = j;
+//		}
+//		
+//		int strlen=str.length();
+//		j = 0;
+//		for(i=0;i<strlen;++i){
+//			
+//			while(j!=0&&str.charAt(i)!=subStr.charAt(j)){
+//				j = next[j];
+//			}
+//			
+//			if(str.charAt(i)==subStr.charAt(j)){
+//				++j;
+//			}
+//			
+//			if(j==subStrLen){
+//				System.out.println("find at "+(i-j+1)+" "+str.substring(i-j+1, i+1));
+//				j = next[j];
+//			}
+//			
+//		}
+//	}
 	
 //	public static int[] getNext(String b) {
 //	int len = b.length();
 //	int j = 0;
 //
-//	int next[] = new int[len + 1];// next±íÊ¾³¤¶ÈÎªiµÄ×Ö·û´®Ç°×ººÍºó×ºµÄ×î³¤¹«¹²²¿·Ö£¬´Ó1¿ªÊ¼
+//	int next[] = new int[len + 1];// nextï¿½ï¿½Ê¾ï¿½ï¿½ï¿½ï¿½Îªiï¿½ï¿½ï¿½Ö·ï¿½ï¿½ï¿½Ç°×ºï¿½Íºï¿½×ºï¿½ï¿½ï¿½î³¤ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö£ï¿½ï¿½ï¿½1ï¿½ï¿½Ê¼
 //	next[0] = next[1] = 0;
 //
-//	for (int i = 1; i < len; i++)// i±íÊ¾×Ö·û´®µÄÏÂ±ê£¬´Ó0¿ªÊ¼
+//	for (int i = 1; i < len; i++)// iï¿½ï¿½Ê¾ï¿½Ö·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â±ê£¬ï¿½ï¿½0ï¿½ï¿½Ê¼
 //	{
-//		// jÔÚÃ¿´ÎÑ­»·¿ªÊ¼¶¼±íÊ¾next[i]µÄÖµ£¬Í¬Ê±Ò²±íÊ¾ÐèÒª±È½ÏµÄÏÂÒ»¸öÎ»ÖÃ
+//		// jï¿½ï¿½Ã¿ï¿½ï¿½Ñ­ï¿½ï¿½ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½Ê¾next[i]ï¿½ï¿½Öµï¿½ï¿½Í¬Ê±Ò²ï¿½ï¿½Ê¾ï¿½ï¿½Òªï¿½È½Ïµï¿½ï¿½ï¿½Ò»ï¿½ï¿½Î»ï¿½ï¿½
 //		while (j > 0 && b.charAt(i) != b.charAt(j))
 //			j = next[j];
 //		if (b.charAt(i) == b.charAt(j))
