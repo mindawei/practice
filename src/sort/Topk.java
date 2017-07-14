@@ -7,6 +7,8 @@ import java.util.Random;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import javax.management.RuntimeErrorException;
+
 public class Topk {
 	public static void main(String[] args) {
 		Random random = new Random();
@@ -27,45 +29,85 @@ public class Topk {
 		
 	}
 	
+//	
+//	/**
+//	 * ï¿½ï¿½ï¿½Ã¿ï¿½ï¿½ï¿½
+//	 * Ê±ï¿½ä£º ï¿½î»µ O(knï¿½ï¿½ ï¿½ï¿½ï¿½ O(n)
+//	 * ï¿½Õ¼ä£º ï¿½ï¿½ O(1)
+//	 */
+//	private static int[] topK(int[] arr, int k) {
+//		
+//		if(arr==null||k<0||k>arr.length){
+//			return null;
+//		}
+//		
+//		topK(arr,0,arr.length-1,k);
+//		return Arrays.copyOfRange(arr, 0, k);
+//	}
+//
+//	private static void topK(int[] arr, int bg, int end, int k) {
+//		
+//		if(bg>=end){
+//			return;
+//		}
+//		
+//		int pos = partion(arr,bg,end);
+//		int num = pos - bg + 1;
+//		if(num==k){
+//			return;
+//		}else if(num<k){
+//			topK(arr,pos+1,end,k-num);
+//		}else{
+//			topK(arr,bg,pos-1,k);
+//		}
+//		
+//		
+//	}
+//
+//	private static int partion(int[] arr, int bg, int end) {
+//		int val = arr[bg];
+//		int i = bg;
+//		int j = end;
+//		while(i<j){
+//			while(i<j&&arr[j]>=val){
+//				--j;
+//			}
+//			arr[i] = arr[j];
+//			while(i<j&&arr[i]<=val){
+//				++i;
+//			}
+//			arr[j] = arr[i];
+//		}
+//		arr[i] = val;
+//		
+//		return i;
+//	}
 	
-	/**
-	 * ÀûÓÃ¿ìÅÅ
-	 * Ê±¼ä£º ×î»µ O(kn£© ×îºÃ O(n)
-	 * ¿Õ¼ä£º ¶Ñ O(1)
-	 */
+	
+
 	private static int[] topK(int[] arr, int k) {
-		
-		if(arr==null||k<0||k>arr.length){
-			return null;
+		if(arr==null||k>arr.length){
+			throw new RuntimeException("è¾“å…¥å‚æ•°éžæ³•");
 		}
-		
 		topK(arr,0,arr.length-1,k);
 		return Arrays.copyOfRange(arr, 0, k);
 	}
 
-	private static void topK(int[] arr, int bg, int end, int k) {
-		
-		if(bg>=end){
-			return;
+	private static void topK(int[] arr, int bg, int ed, int k) {
+		if(bg<ed){
+			int pos = partion(arr,bg,ed);
+			if (pos == k) {
+				return;
+			} else if (k > pos) {
+				topK(arr, pos + 1, ed, k - pos);
+			}else{ // k < pos
+				topK(arr,bg,pos-1,k);
+			}
 		}
-		
-		int pos = partion(arr,bg,end);
-		int num = pos - bg + 1;
-		if(num==k){
-			return;
-		}else if(num<k){
-			topK(arr,pos+1,end,k-num);
-		}else{
-			topK(arr,bg,pos-1,k);
-		}
-		
-		
 	}
 
-	private static int partion(int[] arr, int bg, int end) {
-		int val = arr[bg];
-		int i = bg;
-		int j = end;
+	private static int partion(int[] arr, int i, int j) {
+		int val = arr[i];
 		while(i<j){
 			while(i<j&&arr[j]>=val){
 				--j;
@@ -77,16 +119,13 @@ public class Topk {
 			arr[j] = arr[i];
 		}
 		arr[i] = val;
-		
 		return i;
 	}
-	
-	
 
 	/**
-	 * Ê¹ÓÃ×î´ó¶Ñ 
-	 * Ê±¼ä£º O(nlogK£©
-	 * ¿Õ¼ä£º ¶Ñ O(k)
+	 * Ê¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 
+	 * Ê±ï¿½ä£º O(nlogKï¿½ï¿½
+	 * ï¿½Õ¼ä£º ï¿½ï¿½ O(k)
 	 */
 	private static int[] topK2(int[] arr, int k) {
 		

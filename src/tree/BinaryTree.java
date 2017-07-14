@@ -67,8 +67,6 @@ public class BinaryTree {
 		System.out.println("-------");
 	}
 
-	
-
 	private static void LRD(Node node) {
 		if(node!=null){
 			LRD(node.left);
@@ -78,31 +76,59 @@ public class BinaryTree {
 	}
 	
 	private static void LRDByStack(Node node) {
+		
 		Stack<Node> stack = new Stack<>();
-		Stack<Boolean> isVisited = new Stack<>();
+		Stack<Boolean> visited = new Stack<>();
 		Node p = node;
 		
 		while(p!=null||!stack.isEmpty()){
-			
 			while(p!=null){
 				stack.push(p);
-				isVisited.push(false);
+				visited.push(false);
 				p = p.left;
 			}
 			
 			if(!stack.isEmpty()){
-				if(isVisited.pop()){ // 访问过
-					System.out.print(stack.pop().data+" ");
+				p = stack.peek();
+				if(visited.pop()){
+					System.out.print(p.data+" ");
+					stack.pop();
 					p = null;
-				}else{ // 没访问过
-					isVisited.push(true);
-					p = stack.peek();
+				}else{
+					visited.push(true);
 					p = p.right;
 				}
 			}
-				
 		}
+		
 	}
+	
+//	private static void LRDByStack(Node node) {
+//		Stack<Node> stack = new Stack<>();
+//		Stack<Boolean> isVisited = new Stack<>();
+//		Node p = node;
+//		
+//		while(p!=null||!stack.isEmpty()){
+//			
+//			while(p!=null){
+//				stack.push(p);
+//				isVisited.push(false);
+//				p = p.left;
+//			}
+//			
+//			if(!stack.isEmpty()){
+//				if(isVisited.pop()){ // 访问过
+//					System.out.print(stack.pop().data+" ");
+//					p = null;
+//				}else{ // 没访问过
+//					isVisited.push(true);
+//					p = stack.peek();
+//					p = p.right;
+//				}
+//			}
+//				
+//		}
+//	}
 	
 	private static void LRDByStack2(Node node) {
 		Stack<Node> stack = new Stack<>();
@@ -136,11 +162,11 @@ public class BinaryTree {
 			LDR(node.right);
 		}
 	}
-
+	
 	private static void LDRByStack(Node node) {
-		Stack<Node> stack = new Stack<>();
+		Stack<Node> stack = new Stack<Node>();
 		Node p = node;
-		while(p!=null||!stack.isEmpty()){
+		while(p!=null || !stack.isEmpty()){
 			while(p!=null){
 				stack.push(p);
 				p = p.left;
@@ -152,8 +178,26 @@ public class BinaryTree {
 				p = p.right;
 			}
 		}
-	
+		
 	}
+
+//	private static void LDRByStack(Node node) {
+//		Stack<Node> stack = new Stack<>();
+//		Node p = node;
+//		while(p!=null||!stack.isEmpty()){
+//			while(p!=null){
+//				stack.push(p);
+//				p = p.left;
+//			}
+//			
+//			if(!stack.isEmpty()){
+//				p = stack.pop();
+//				System.out.print(p.data+" ");
+//				p = p.right;
+//			}
+//		}
+//	
+//	}
 
 	private static void DLR(Node node) {
 		if(node!=null){
@@ -162,14 +206,11 @@ public class BinaryTree {
 			DLR(node.right);
 		}
 	}
-
+	
 	private static void DLRByStack(Node node) {
-		
 		Stack<Node> stack = new Stack<>();
 		Node p = node;
-		
 		while(p!=null||!stack.isEmpty()){
-			
 			while(p!=null){
 				System.out.print(p.data+" ");
 				stack.push(p);
@@ -177,11 +218,31 @@ public class BinaryTree {
 			}
 			
 			if(!stack.isEmpty()){
-				p = stack.pop();
-				p = p.right;
+				p = stack.pop().right;
 			}
 		}
 	}
+	
+	
+//	private static void DLRByStack(Node node) {
+//		
+//		Stack<Node> stack = new Stack<>();
+//		Node p = node;
+//		
+//		while(p!=null||!stack.isEmpty()){
+//			
+//			while(p!=null){
+//				System.out.print(p.data+" ");
+//				stack.push(p);
+//				p = p.left;
+//			}
+//			
+//			if(!stack.isEmpty()){
+//				p = stack.pop();
+//				p = p.right;
+//			}
+//		}
+//	}
 
 	
 	

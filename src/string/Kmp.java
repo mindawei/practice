@@ -24,50 +24,92 @@ public class Kmp {
 		kmp(original, find);
 	}
 
-	private static void kmp(String original, String find) {
-		int findLen = find.length();
-		int[] next = new int[findLen+1];
-		next[0] = next[1] = 0;
-		int i,j=0;
-		
-		char ch;
-		for(i=1;i<findLen;++i){
-			ch = find.charAt(i);
-			while(j!=0&&ch!=find.charAt(j)){
-				j = next[j];
-			}
-			
-			if(ch==find.charAt(j)){
-				++j;
-			}
-			
-			next[i+1] = j;
-		}
-		
-		
-		int originalLen = original.length();
-		j = 0;
-		for(i=0;i<originalLen;++i){
-			ch = original.charAt(i);
-			while(j!=0&&ch!=find.charAt(j)){
-				j = next[j];
-			}
-			
-			if(ch == find.charAt(j)){
-				++j;
-			}
-			
-			if(j==findLen){
-				
-				System.out.println("find at "+(i-j+1)+" "+original.substring((i-j+1),i+1));
-				
-				j = next[j];
-			}
-			
-		}
-		
-		
-	}
+    private static void kmp(String original, String find) {
+    	
+    	int findLen = find.length();
+    	int[] next = new int[findLen+1];
+    	next[0] = next[1] = 0;
+    	int i,j = 0;
+    	char ch;
+    	for(i=1;i<findLen;++i){
+    		ch = find.charAt(i);
+    		while(j!=0&&ch!=find.charAt(j)){
+    			j = next[j];
+    		}
+    		
+    		if(ch==find.charAt(j)){
+    			++j;
+    		}
+    		
+    		next[i+1] = j;
+    	}
+    	
+    	j = 0;
+    	int originalLen = original.length();
+    	for(i=0;i<originalLen;++i){
+    		ch = original.charAt(i);
+    		while(j!=0&&ch!=find.charAt(j)){
+    			j = next[j];
+    		}
+    		
+    		if(ch==find.charAt(j)){
+    			++j;
+    		}
+    		
+    		if(j==findLen){
+    			System.out.println("find at "+(i-j+1)+" "+original.substring((i-j+1),i+1));
+    			
+    			j = next[j];
+    		}
+    		
+    	}
+    	
+    }
+
+//	private static void kmp(String original, String find) {
+//		int findLen = find.length();
+//		int[] next = new int[findLen+1];
+//		next[0] = next[1] = 0;
+//		int i,j=0;
+//		
+//		char ch;
+//		for(i=1;i<findLen;++i){
+//			ch = find.charAt(i);
+//			while(j!=0&&ch!=find.charAt(j)){
+//				j = next[j];
+//			}
+//			
+//			if(ch==find.charAt(j)){
+//				++j;
+//			}
+//			
+//			next[i+1] = j;
+//		}
+//		
+//		
+//		int originalLen = original.length();
+//		j = 0;
+//		for(i=0;i<originalLen;++i){
+//			ch = original.charAt(i);
+//			while(j!=0&&ch!=find.charAt(j)){
+//				j = next[j];
+//			}
+//			
+//			if(ch == find.charAt(j)){
+//				++j;
+//			}
+//			
+//			if(j==findLen){
+//				
+//				System.out.println("find at "+(i-j+1)+" "+original.substring((i-j+1),i+1));
+//				
+//				j = next[j];
+//			}
+//			
+//		}
+//		
+//		
+//	}
 
 //	private static void kmp(String original, String find) {
 //		
