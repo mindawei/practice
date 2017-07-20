@@ -1,6 +1,6 @@
 package list;
 
-public class LinkedList {
+public class ListReverse {
 
 	private static final class Node{
 		
@@ -28,11 +28,11 @@ public class LinkedList {
 		
 		print(nodes[0]);
 		
-		print(swap(nodes[0]));
+		print(reverse(nodes[0]));
 		
 	}
 
-	private static Node swap(Node head) {
+	private static Node reverse(Node head) {
 		
 		if(head==null){
 			return head;
