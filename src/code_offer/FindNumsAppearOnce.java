@@ -1,4 +1,4 @@
-package offer;
+package code_offer;
 
 //num1,num2分别为长度为1的数组。传出参数
 //将num1[0],num2[0]设置为返回结果

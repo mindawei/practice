@@ -1,4 +1,4 @@
-package hihoCoder;
+package code_hihoCoder;
 
 import java.util.Scanner;
 
