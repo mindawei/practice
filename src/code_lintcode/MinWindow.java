@@ -2,6 +2,12 @@ package code_lintcode;
 
 import java.util.HashMap;
 
+/**
+ * 
+ *
+ * @author mindw
+ * @date 2017年7月28日
+ */
 public class MinWindow {
 	
 	public static void main(String[] args) {

@@ -3,6 +3,12 @@ package code_lintcode;
 import java.util.ArrayList;
 import java.util.LinkedList;
 
+/**
+ * 
+ *
+ * @author mindw
+ * @date 2017年7月28日
+ */
 public class ZigzagLevelOrder {
 
 	public static class TreeNode {
