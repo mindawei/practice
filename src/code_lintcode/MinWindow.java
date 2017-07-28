@@ -3,8 +3,11 @@ package code_lintcode;
 import java.util.HashMap;
 
 /**
+ * 给定一个字符串source和一个目标字符串target，在字符串source中找到包括所有目标字符串字母的子串。
+ * 左右两个指针滑动
+ * http://www.lintcode.com/zh-cn/problem/minimum-window-substring/#
+ * http://www.jiuzhang.com/solution/minimum-window-substring
  * 
- *
  * @author mindw
  * @date 2017年7月28日
  */

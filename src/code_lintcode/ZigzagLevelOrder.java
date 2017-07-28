@@ -4,8 +4,10 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 
 /**
+ * 给出一棵二叉树，返回其节点值的锯齿形层次遍历（先从左往右，下一层再从右往左，层与层之间交替进行） 
+ * http://www.lintcode.com/zh-cn/problem/binary-tree-zigzag-level-order-traversal/
+ * http://www.jiuzhang.com/solution/binary-tree-zigzag-level-order-traversal
  * 
- *
  * @author mindw
  * @date 2017年7月28日
  */
