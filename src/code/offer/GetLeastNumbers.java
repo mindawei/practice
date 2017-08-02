@@ -44,9 +44,9 @@ public class GetLeastNumbers {
 		  if(pos==k){
 			  return;
 		  }else if(k>pos){
-			  partion(input, pos+1, j);
+			  quickSort(input, pos+1, j,k);
 		  }else{
-			  partion(input, i, pos-1);
+			  quickSort(input, i, pos-1,k);
 		  }
 		  
 	  }
