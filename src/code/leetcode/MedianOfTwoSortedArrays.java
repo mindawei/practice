@@ -10,8 +10,9 @@ package code.leetcode;
  */
 public class MedianOfTwoSortedArrays {
 	  
+	// http://www.jiuzhang.com/solution/median-of-two-sorted-arrays
 	public double findMedianSortedArrays(int A[], int B[]) {
-		\
+	
 		return 0;
 	}
 }
