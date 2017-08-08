@@ -27,19 +27,19 @@ public class IsSymmetric {
 		return _isSymmetric(root.left,root.right);
 	}
 
-	private boolean _isSymmetric(TreeNode left, TreeNode right) {
+	private boolean _isSymmetric(TreeNode node1, TreeNode node2) {
 		
-		if (left == null && right == null) {
+		if (node1 == null && node2 == null) {
 			return true;
-		} else if (left == null || right == null) {
+		} else if (node1 == null || node2 == null) {
 			return false;
 		}
 		
-		if(left.val!=right.val){
+		if (node1.val != node2.val) {
 			return false;
 		}
 		
+		return _isSymmetric(node1.left, node2.right)&&_isSymmetric(node1.right, node2.left);
 		
-		return false;
 	}
 }
