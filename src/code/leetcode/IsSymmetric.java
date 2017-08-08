@@ -33,13 +33,10 @@ public class IsSymmetric {
 			return true;
 		} else if (node1 == null || node2 == null) {
 			return false;
-		}
-		
-		if (node1.val != node2.val) {
+		}else if (node1.val != node2.val) {
 			return false;
+		}else{
+			return _isSymmetric(node1.left, node2.right)&&_isSymmetric(node1.right, node2.left);
 		}
-		
-		return _isSymmetric(node1.left, node2.right)&&_isSymmetric(node1.right, node2.left);
-		
 	}
 }
