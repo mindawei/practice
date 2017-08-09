@@ -31,7 +31,7 @@ public class Client {
     }  
     public void init(){  
         try {  
-           /* 
+            /* 
              * 客户端向服务器端发起建立连接请求 
              */  
             SocketChannel socketChannel = SocketChannel.open();  
