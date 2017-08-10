@@ -15,15 +15,40 @@ package code.leetcode;
  */
 public class IsInterleave {
 	
-	// f[k][m][n] = ..
+	public static void main(String[] args) {
+		System.out.println(new IsInterleave().isInterleave("ba","ba","bbaa"));
+	}
+	
 	public boolean isInterleave(String s1, String s2, String s3) {
 		if(s1==null||s2==null||s3==null){
 			return false;
 		}
-		if(s1.length()+s2.length()!=s3.length()){
+		
+		int len3 = s3.length(),len2 = s2.length(),len1 = s1.length();
+		
+		if(len1==0){
+			return s2.equals(s3);
+		}else if(len2==0){
+			return s1.equals(s3);
+		}else if(len1+len2!=len3){
 			return false;
 		}
-		return walk(s1,0,s2,0,s3,0);
+
+		final boolean[][] f = new boolean[len2+1][len1+1];
+		f[0][0] = true;
+		int i,j,k;
+		for(i=1;i<=len3;++i){
+			for(j = i < len2 ? i : len2;j>=0;--j){
+				if((k = i-j) >len1){
+					break;
+				}
+				if ((j > 0 && f[j - 1][k] && s3.charAt(i - 1) == s2.charAt(j - 1)
+						|| (k > 0 && f[j][k - 1] && s3.charAt(i - 1) == s1.charAt(k - 1)))) {
+					f[j][k] = true;
+				}
+			}
+		}
+		return f[len2][len1];
 	}
 	
 	// 超时
