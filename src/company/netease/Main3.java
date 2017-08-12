@@ -1,5 +1,6 @@
 package company.netease;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Main3 {
@@ -12,39 +13,36 @@ public class Main3 {
 		System.out.println(solve(n,k));
 	}
 
+	private static final int mod = 1_000_000_007;
 	
 	private static int solve(int n,int k) {
 		int[][] f = new int[n+1][k+1];
-		
-	
-		for (int i = 1; i <= k; ++i) {
-			for (int j = 1; j <= i; ++j) {
-				for (int m = 1; m <= i; ++m) {
-					if (m <= j || m % j != 0) {
-						++f[2][i];
-						if(f[2][i]>=1_000_000_007){
-							f[2][i] %= 1_000_000_007;
-						}
-					}
-				}
-			}
-		}
-	
-		for(int r=3;r<=n;++r){
+		Arrays.fill(f[1], 1);
+		for(int i=2;i<=n;++i){
+			int sum = 0;
 			for(int j=1;j<=k;++j){
-				for(int m=1;m<=k;++m){
-					if(m<=j||m%j!=0){
-						f[r][j] += f[r-1][m];
-						if(f[r][j]>=1_000_000_007){
-							f[r][j] %= 1_000_000_007;
-						}
-					}
-				}
+				sum += f[i-1][j];
+				sum %= mod;
 			}
-			
+			for(int j=1;j<=k;++j){
+				int sum2 = 0;
+				for(int z=j+j;z<=k;z+=j){
+					sum2 += f[i-1][z];
+					sum2 %= mod;
+				}
+				
+				f[i][j] =(sum  - sum2 + mod)%mod;
+				
+			}
 		}
 		
-		return f[n][k];
+		int ans = 0;
+		for(int i=1;i<=k;++i){
+			ans += f[n][i];
+			ans %= mod;
+		}
+	
+		return ans;
 	}
 	
 
