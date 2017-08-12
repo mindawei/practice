@@ -1,7 +1,7 @@
 package code.leetcode;
 
 /**
- * Given a linked list, return the node where the cycle begins. If there is no cycle, returnnull.
+ * Given a linked list, return the node where the cycle begins. If there is no cycle, return null.
  * Follow up: Can you solve it without using extra space?
  * 
  * https://www.nowcoder.com/practice/650474f313294468a4ded3ce0f7898b9?tpId=46&tqId=29039&rp=1&ru=/ta/leetcode&qru=/ta/leetcode/question-ranking
