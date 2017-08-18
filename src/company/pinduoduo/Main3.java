@@ -1,18 +1,18 @@
 package company.pinduoduo;
 
-import java.util.Arrays;
-import java.util.Scanner;
-
-import java.util.Arrays;
-import java.util.Scanner;
 
 /**
+ * 六一儿童节，老师带了很多好吃的巧克力到幼儿园。每块巧克力j的重量为w[j]，对于每个小朋友i，当他分到的巧克力大小达到h[i] (即w[j]>=h[i])，
+ * 他才会上去表演节目。老师的目标是将巧克力分发给孩子们，使得最多的小孩上台表演。可以保证每个w[i]> 0且不能将多块巧克力分给一个孩子或将一块分给多个孩子。
  * 
- * 只通过80%
  * @author 闵大为
  * @data 2017年8月1日
  * @Description
  */
+
+import java.util.Arrays;
+import java.util.Scanner;
+
 public class Main3 {
 	
 	public static void main(String[] args) {
@@ -32,63 +32,19 @@ public class Main3 {
 
 	private static int solve(int[] h, int[] w) {
 		
-		int len = Math.min(h.length, w.length);
+		Arrays.sort(h);
+		Arrays.sort(w);
 		
-		minTopK(h,0,h.length-1,len);
-		minTopK(w,0,w.length-1,len);
-		
-		Arrays.sort(h,0,len);
-		Arrays.sort(w,0,len);
-		
-		int n = h.length;
 		int ans = 0;
-		int j = n - 1;
-		for (int i = w.length - 1; i >= 0; --i)
-		{
-			for (; j >= 0; --j)
-			{
-				if (w[i] >= h[j]){
-					++ans;
-					break;
-				}
+		int i = w.length -1;
+		int j = h.length -1;
+		while(i>=0&&j>=0){
+			if(w[i]>=h[j]){
+				++ans;
+				--i;
 			}
+			--j;
 		}
-	
 		return ans;
 	}
-	
-	
-	private static void minTopK(int[] arr, int bg, int ed, int k) {
-		if(bg<ed){
-			int pos = minPartion(arr,bg,ed);
-			if (pos == k) {
-				return;
-			} else if (k > pos) {
-				minTopK(arr, pos + 1, ed, k - pos);
-			}else{ // k < pos
-				minTopK(arr,bg,pos-1,k);
-			}
-		}
-	}
-
-	private static int minPartion(int[] arr, int i, int j) {
-		int val = arr[i];
-		while(i<j){
-			while(i<j&&arr[j]>=val){
-				--j;
-			}
-			arr[i] = arr[j];
-			while(i<j&&arr[i]<=val){
-				++i;
-			}
-			arr[j] = arr[i];
-		}
-		arr[i] = val;
-		return i;
-	}
-	
-	
-	
-
-
 }
