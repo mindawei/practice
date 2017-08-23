@@ -36,8 +36,8 @@ public class EditDistance {
 			 for(int j=1;j<=m;++j){
 				 f[i][j] = inf;
 				 f[i][j] = Math.min(f[i][j], f[i-1][j]+1); // delete
-				 f[i][j] = Math.min(f[i][j], f[i-1][j-1]+1); // insert  
-				 f[i][j] = Math.min(f[i][j], f[i][j-1]+1); // update  
+				 f[i][j] = Math.min(f[i][j], f[i-1][j-1]+1); // update
+				 f[i][j] = Math.min(f[i][j], f[i][j-1]+1); // insert   
 				 if(word1.charAt(i-1)==word2.charAt(j-1)){
 					 f[i][j] = Math.min(f[i][j], f[i-1][j-1]); // update  
 				 }
