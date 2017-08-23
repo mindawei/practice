@@ -21,78 +21,28 @@ public class Main1 {
     }
 
 	private static long solve(int[] arr) {
-		
-		if(arr==null||arr.length<=2){
-			return 0;
-		}
-		
-		boolean ismax1 = false;
-		boolean ismax2 = false;
-		boolean _ismax1 = false;
-		boolean _ismax2 = false;
-	
-		long max1=0; long max2=0;long _max1=0;long _max2=0;
-	    
-		long ans = Long.MIN_VALUE;
-		
-		long v;
-		for(int i=0;i<arr.length;++i){
-			
-			//System.out.println(max1+" "+max2+" "+_max1+" "+_max2);
-			v = arr[i];
-			
-			if(ismax1&&ismax2){
-				ans = Math.max(ans, v*max1*max2);
-			}
-			
-			if(_ismax1&&_ismax2){
-				ans = Math.max(ans, v*_max1*_max2);
-			}
-			
-			if(ismax1&&_ismax1){
-				ans = Math.max(ans, v*max1*_max1);
-			}
-			
+
+		long max1 = 0, max2 = 0, max3 = 0,min1=0,min2=0;
+		for(int v : arr){
 			if(v==0){
-				ans = Math.max(ans, 0);
-			}else if(v>0){
-				if(!ismax1){
-					ismax1 = true;
-					max1 = v;
-				}else if(!ismax2){
-					ismax2 = true;
-					max2 = Math.min(v,max1);
-					max1 = Math.max(v,max1);
-				}else{
-					if(v>=max1){
-						max2 = max1;
-						max1 = v;
-					}else{
-						max2 = Math.max(v,max2);
-					}
-				}
-			}else{ // if(v<0){
-				
-				
-				if(!_ismax1){
-					_ismax1 = true;
-					_max1 = v;
-				}else if(!_ismax2){
-					_ismax2 = true;
-					_max2 = Math.max(v,_max1);
-					_max1 = Math.min(v,_max1);
-				}else{
-					if(v<=_max1){
-						_max2 = _max1;
-						_max1 = v;
-					}else{
-						_max2 = Math.min(v,_max2);
-					}
-				}
+				continue;
+			}else if(v>max1){
+				max3 = max2;
+				max2 = max1;
+				max1 = v;
+			}else if(v>max2){
+				max3 = max2;
+				max2 = v;
+			}else if(v>max3){
+				max3 = v;
+			}else if(v<min1){
+				min2 = min1;
+				min1 = v;
+			}else if(v<min2){
+				min2 = v;
 			}
-	
 		}
-		
-		return ans;
+
+		return Math.max(max1*max2*max3,max1*min1*min2);
 	}
 }
