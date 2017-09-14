@@ -15,6 +15,8 @@ import java.util.concurrent.FutureTask;
 public class Main {
 
 	public static void main(String[] args) {
+		
+		
 		System.out.println(Math.pow(2+Math.sqrt(3),80)%10);
 		
 		new HashMap().size();
