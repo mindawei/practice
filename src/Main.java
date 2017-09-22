@@ -14,8 +14,13 @@ import java.util.concurrent.FutureTask;
 
 public class Main {
 
+//	static enum enumA{
+//	    VALUE;	
+//	}
+	
 	public static void main(String[] args) {
 		
+		// enumA.VALUE.in
 		
 		System.out.println(Math.pow(2+Math.sqrt(3),80)%10);
 		
